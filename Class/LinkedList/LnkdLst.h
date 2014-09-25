@@ -49,28 +49,24 @@ LnkdLst::LnkdLst(int num)
 
 void LnkdLst::append(int num)
 {
-  int count = 0;
-  worker = head;
-  while(worker)
-    {
-      count++;
-      worker = worker->next;
-    }
-  delete worker;
-  Node *newList = new Node[count+num];
-  head = newList;
-
-  for(int i = 0; i < count+num; i++)
-    {
-      newList[i].data = i;
-        if(i == ((count+num) - 1))
-        {
-          newList[i].next = NULL;
-          break;
-        }
-      newList[i].next = &newList[i+1];
-    }
-  newList[count+num+1].next = NULL;
+ Node * newNode;
+	Node * nodePtr;
+	
+	newNode = new Node;
+	newNode->data = num;
+	newNode->next = NULL;
+	
+	if(!head)
+	{
+		head = newNode;
+	}
+	else{
+		nodePtr = head;
+		while(nodePtr->next){
+		nodePtr = nodePtr->next;
+	}
+	nodePtr->next = newNode;
+	}
 }
 
 string LnkdLst::toString()
@@ -89,7 +85,7 @@ string LnkdLst::toString()
 
 LnkdLst::~LnkdLst()
 {
-  delete worker;
+  delete head;
 }
 
 #endif	/* LNKDLST_H */
