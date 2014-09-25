@@ -5,10 +5,11 @@
  */
 
 #ifndef LNKDLST_H
-#define	LNKDLST_H
+#define    LNKDLST_H
 
 #include <string>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -26,19 +27,6 @@ private:
     Node *head;
     Node *worker;
 };
-
-int main()
-{
-    //Create a linked list
-    LnkdLst list(1);
-    //Append 3 more chains
-    int clinks=3;
-    for(int i=1;i<=clinks;i++){
-        list.append(i);
-    }
-    list.toString();
-    return 0;
-}
 
 LnkdLst::LnkdLst(int num)
 {
@@ -84,15 +72,16 @@ void LnkdLst::append(int num)
 
 string LnkdLst::toString()
 {
-  string display = " ";
+  std::ostringstream o;
   if(head){
       worker=head;
       do{
-           cout<<"Data element in the list ->"<<worker->data<<endl;
+           o << "Data element in the list -> " << worker->data
+            << endl;
            worker=worker->next;
       }while(worker);
   }
-  return display;
+  return o.str();
 }
 
 LnkdLst::~LnkdLst()
