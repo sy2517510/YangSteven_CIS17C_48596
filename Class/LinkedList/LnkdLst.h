@@ -5,7 +5,7 @@
  */
 
 #ifndef LNKDLST_H
-#define    LNKDLST_H
+#define LNKDLST_H
 
 #include <string>
 #include <iostream>
@@ -30,6 +30,8 @@ private:
 
 LnkdLst::LnkdLst(int num)
 {
+  if(num == 0) head = NULL;
+  else{
   Node *list = new Node[num];
   head = list;
   for(int i = 0; i < num; i++)
@@ -42,6 +44,7 @@ LnkdLst::LnkdLst(int num)
         }
       list[i].next = &list[i+1];
     }
+  }
 }
 
 void LnkdLst::append(int num)
@@ -59,12 +62,12 @@ void LnkdLst::append(int num)
 
   for(int i = 0; i < count+num; i++)
     {
-    	if(i == ((count+num) - 1))
+      newList[i].data = i;
+        if(i == ((count+num) - 1))
         {
           newList[i].next = NULL;
           break;
         }
-      newList[i].data = i;
       newList[i].next = &newList[i+1];
     }
   newList[count+num+1].next = NULL;
