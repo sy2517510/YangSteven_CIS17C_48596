@@ -9,7 +9,6 @@
 
 #include <string>
 #include <iostream>
-#include <sstream>
 
 using namespace std;
 
@@ -30,8 +29,12 @@ private:
 
 LnkdLst::LnkdLst(int num)
 {
-  if(num == 0) head = NULL;
-  else{
+    Node * newNode = new Node;
+    newNode->data = num;
+    newNode->next = NULL;
+    
+    head = newNode;
+/*
   Node *list = new Node[num];
   head = list;
   for(int i = 0; i < num; i++)
@@ -43,14 +46,13 @@ LnkdLst::LnkdLst(int num)
           break;
         }
       list[i].next = &list[i+1];
-    }
-  }
+    } */
 }
 
 void LnkdLst::append(int num)
 {
- Node * newNode;
-	Node * nodePtr;
+   Node * newNode;
+    Node * nodePtr;
 	
 	newNode = new Node;
 	newNode->data = num;
@@ -71,21 +73,26 @@ void LnkdLst::append(int num)
 
 string LnkdLst::toString()
 {
-  std::ostringstream o;
+  string display = " ";
   if(head){
       worker=head;
       do{
-           o << "Data element in the list -> " << worker->data
-            << endl;
+           cout<<"Data element in the list ->"<<worker->data<<endl;
            worker=worker->next;
       }while(worker);
   }
-  return o.str();
+  return display;
 }
 
 LnkdLst::~LnkdLst()
 {
-  delete head;
+    if(head){
+        do{
+            worker = head;
+            head = head->next;
+            delete worker;
+        }while(head);
+    }
 }
 
 #endif	/* LNKDLST_H */
