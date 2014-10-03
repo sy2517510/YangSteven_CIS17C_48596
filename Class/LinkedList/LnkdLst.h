@@ -1,7 +1,7 @@
 /*
  * File:   LnkdLst.h
  * Author: Steven Yang
- * Created on October 2 2014, 6:00 PM
+ * Created on October 3 2014, 6:00 PM
  */
 
 #ifndef LNKDLST_H
@@ -45,6 +45,8 @@ int main()
     list.extract(2);
     list.insertAfter(3,9); 
     list.insertAfter(0,1);
+    list.insertBefore(7, 3);
+    list.insertBefore(1,8);
     
     cout << list.toString();
     
@@ -58,19 +60,6 @@ LnkdLst::LnkdLst(int num)
     newNode->next = NULL;
     
     head = newNode;
-/*
-  Node *list = new Node[num];
-  head = list;
-  for(int i = 0; i < num; i++)
-    {
-      list[i].data = i;
-      if(i == (num - 1))
-        {
-          list[i].next = NULL;
-          break;
-        }
-      list[i].next = &list[i+1];
-    } */
 }
 
 LnkdLst::LnkdLst(const LnkdLst& other)
@@ -164,7 +153,6 @@ void LnkdLst::insertAfter(int value, int input)
 {
     Node * nodePtr;
     Node * newNode;
-    Node * prev;
     Node * tracker;
     
     newNode = new Node;
@@ -212,7 +200,48 @@ void LnkdLst::insertAfter(int value, int input)
 
 void LnkdLst::insertBefore(int value, int input)
 {
+    Node * nodePtr;
+    Node * newNode;
+    Node * prev;
+    Node * tracker;
     
+    newNode = new Node;
+    newNode->data = input;
+    newNode->next = NULL;
+    
+    if(!head)
+    {
+        return;
+    }else
+    {
+        if(head->data == value)
+        {
+            tracker = head;
+            if(tracker->next == NULL)
+            {
+                tracker->next = newNode;
+            }else{
+                newNode->next = tracker;
+                head = newNode;
+            }
+        }else
+        {
+        nodePtr = head;
+        bool found = false;
+        while(nodePtr->data != value && nodePtr->next != NULL)
+        {
+            prev = nodePtr;
+            nodePtr = nodePtr->next;
+        if(nodePtr->data == value) found = true;
+        }
+            if(found)
+            {
+                tracker = nodePtr;
+                prev->next = newNode;
+                newNode->next = tracker;
+            }
+        }
+    }
 }
 
 string LnkdLst::toString()
