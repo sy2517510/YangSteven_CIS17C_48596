@@ -1,7 +1,7 @@
 /*
  * File:   LnkdLst.h
  * Author: Steven Yang
- * Created on September 20, 2014, 6:00 PM
+ * Created on October 2 2014, 6:00 PM
  */
 
 #ifndef LNKDLST_H
@@ -36,10 +36,14 @@ private:
 int main()
 {
     LnkdLst list(0);
+    
     list.append(3);
     list.append(5);
     list.prepend(2);
     list.prepend(7);
+    list.extract(5);
+    list.extract(2);
+    
     cout << list.toString();
     
     return 0;
@@ -121,7 +125,37 @@ void LnkdLst::prepend(int num)
 
 void LnkdLst::extract(int num)
 {
+    Node *nodePtr;
+    Node *tracker;
+    Node *prev;
     
+    if(!head)
+    {
+        return;
+    }
+    else{
+        if(head->data == num && head->next == NULL)
+        {
+            head = NULL;
+            
+        }else {
+            bool found = false;
+            nodePtr = head;
+            while(nodePtr->data != num && nodePtr->next != NULL)
+            {
+                prev = nodePtr;
+                nodePtr = nodePtr->next;
+                if(nodePtr->data == num){ found = true;}
+            }
+            if(found)
+            {
+            tracker = nodePtr;
+            nodePtr = tracker->next;
+            prev->next = nodePtr;
+            delete tracker;
+            }
+        }   
+    }
 }
 
 void LnkdLst::insertAfter(int num)
