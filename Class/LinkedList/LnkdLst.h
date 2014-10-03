@@ -33,17 +33,17 @@ private:
     Node *worker;
 };
 
-/*
 int main()
 {
     LnkdLst list(0);
     list.append(3);
     list.append(5);
+    list.prepend(2);
+    list.prepend(7);
     cout << list.toString();
     
     return 0;
 }
-*/
 
 LnkdLst::LnkdLst(int num)
 {
@@ -101,7 +101,22 @@ void LnkdLst::append(int num)
 
 void LnkdLst::prepend(int num)
 {
+    Node *newNode;
+    Node *nodePtr;
     
+    newNode = new Node;
+    newNode->data = num;
+    newNode->next = NULL;
+    
+    if(!head)
+    {
+        head = newNode;   
+    } 
+    else{
+        nodePtr = head;
+        newNode->next = nodePtr;
+        head = newNode;
+    }
 }
 
 void LnkdLst::extract(int num)
