@@ -51,6 +51,7 @@ int main()
     list.insertBefore(1,8);
     
     cout << "The first value is: " << list.getHead() << endl;
+    cout << "The last value is: " << list.getTail() << endl;
     cout << list.toString();
     
     return 0;
@@ -254,7 +255,20 @@ int LnkdLst::getHead()
 
 int LnkdLst::getTail()
 {
+    Node * nodePtr;
+    nodePtr = head;
     
+    if(nodePtr->next == NULL)
+    {
+        return nodePtr->data;   
+    }else
+    {
+        while(nodePtr->next != NULL)
+        {
+            nodePtr = nodePtr->next;
+        }
+        return nodePtr->data;
+    }
 }
 
 string LnkdLst::toString()
