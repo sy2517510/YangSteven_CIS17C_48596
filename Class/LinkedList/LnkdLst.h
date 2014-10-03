@@ -15,7 +15,13 @@ using namespace std;
 class LnkdLst {
 public:
     LnkdLst(int);
+    LnkdLst(const LnkdLst&);
+    LnkdLst& operator= (const LnkdLst&);
+    void prepend(int);
     void append(int);
+    void extract(int);
+    void insertAfter(int);
+    void insertBefore(int);
     string toString();
     virtual ~LnkdLst();
 private:
@@ -26,6 +32,18 @@ private:
     Node *head;
     Node *worker;
 };
+
+/*
+int main()
+{
+    LnkdLst list(0);
+    list.append(3);
+    list.append(5);
+    cout << list.toString();
+    
+    return 0;
+}
+*/
 
 LnkdLst::LnkdLst(int num)
 {
@@ -49,11 +67,21 @@ LnkdLst::LnkdLst(int num)
     } */
 }
 
+LnkdLst::LnkdLst(const LnkdLst& other)
+{
+    
+}
+
+LnkdLst& LnkdLst::operator= (const LnkdLst& other)
+{
+    
+}
+
 void LnkdLst::append(int num)
 {
-   Node * newNode;
+    Node * newNode;
     Node * nodePtr;
-	
+    
 	newNode = new Node;
 	newNode->data = num;
 	newNode->next = NULL;
@@ -69,6 +97,26 @@ void LnkdLst::append(int num)
 	}
 	nodePtr->next = newNode;
 	}
+}
+
+void LnkdLst::prepend(int num)
+{
+    
+}
+
+void LnkdLst::extract(int num)
+{
+    
+}
+
+void LnkdLst::insertAfter(int num)
+{
+    
+}
+
+void LnkdLst::insertBefore(int num)
+{
+    
 }
 
 string LnkdLst::toString()
