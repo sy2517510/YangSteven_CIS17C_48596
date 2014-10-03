@@ -50,6 +50,7 @@ int main()
     list.insertBefore(7, 3);
     list.insertBefore(1,8);
     
+    cout << "The first value is: " << list.getHead() << endl;
     cout << list.toString();
     
     return 0;
@@ -80,7 +81,7 @@ void LnkdLst::append(int num)
     Node * nodePtr;
     
     newNode = new Node;
-	newNode->data = num;
+    newNode->data = num;
 	newNode->next = NULL;
 	
 	if(!head)
@@ -248,7 +249,7 @@ void LnkdLst::insertBefore(int value, int input)
 
 int LnkdLst::getHead()
 {
-    
+    return head->data;
 }
 
 int LnkdLst::getTail()
