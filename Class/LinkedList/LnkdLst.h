@@ -20,8 +20,8 @@ public:
     void prepend(int);
     void append(int);
     void extract(int);
-    void insertAfter(int);
-    void insertBefore(int);
+    void insertAfter(int, int);
+    void insertBefore(int, int);
     string toString();
     virtual ~LnkdLst();
 private:
@@ -43,6 +43,8 @@ int main()
     list.prepend(7);
     list.extract(5);
     list.extract(2);
+    list.insertAfter(3,9); 
+    list.insertAfter(0,1);
     
     cout << list.toString();
     
@@ -86,7 +88,7 @@ void LnkdLst::append(int num)
     Node * newNode;
     Node * nodePtr;
     
-	newNode = new Node;
+    newNode = new Node;
 	newNode->data = num;
 	newNode->next = NULL;
 	
@@ -158,12 +160,57 @@ void LnkdLst::extract(int num)
     }
 }
 
-void LnkdLst::insertAfter(int num)
+void LnkdLst::insertAfter(int value, int input)
 {
+    Node * nodePtr;
+    Node * newNode;
+    Node * prev;
+    Node * tracker;
     
+    newNode = new Node;
+    newNode->data = input;
+    newNode->next = NULL;
+    
+    if(!head)
+    {
+        return;
+    }else
+    {
+        if(head->data == value)
+        {
+            tracker = head;
+            if(tracker->next == NULL)
+            {
+                tracker->next = newNode;
+            }else{
+                nodePtr = tracker->next;
+                newNode->next = nodePtr;
+                tracker->next = newNode;
+            }
+        }else
+        {
+        nodePtr = head;
+        bool found = false;
+        while(nodePtr->data != value && nodePtr->next != NULL)
+        {
+            nodePtr = nodePtr->next;
+        if(nodePtr->data == value) found = true;
+        }
+            if(found)
+            {
+                tracker = nodePtr;
+                if(nodePtr->next != NULL)
+                {
+                    nodePtr = nodePtr->next;
+                    tracker->next = newNode;
+                    newNode->next = nodePtr;
+                }else{tracker->next = newNode;}
+            }
+        }
+    }
 }
 
-void LnkdLst::insertBefore(int num)
+void LnkdLst::insertBefore(int value, int input)
 {
     
 }
