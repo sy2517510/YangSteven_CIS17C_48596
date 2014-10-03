@@ -22,6 +22,8 @@ public:
     void extract(int);
     void insertAfter(int, int);
     void insertBefore(int, int);
+    int getHead();
+    int getTail();
     string toString();
     virtual ~LnkdLst();
 private:
@@ -64,7 +66,7 @@ LnkdLst::LnkdLst(int num)
 
 LnkdLst::LnkdLst(const LnkdLst& other)
 {
-    
+
 }
 
 LnkdLst& LnkdLst::operator= (const LnkdLst& other)
@@ -242,6 +244,16 @@ void LnkdLst::insertBefore(int value, int input)
             }
         }
     }
+}
+
+int LnkdLst::getHead()
+{
+    
+}
+
+int LnkdLst::getTail()
+{
+    
 }
 
 string LnkdLst::toString()
