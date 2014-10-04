@@ -22,8 +22,8 @@ public:
     void extract(int);
     void insertAfter(int, int);
     void insertBefore(int, int);
-    int getHead();
-    int getTail();
+    int getHead() const;
+    int getTail() const;
     string toString();
     virtual ~LnkdLst();
 private:
@@ -83,7 +83,7 @@ void LnkdLst::append(int num)
     
     newNode = new Node;
     newNode->data = num;
-	newNode->next = NULL;
+    newNode->next = NULL;
 	
 	if(!head)
 	{
@@ -248,12 +248,12 @@ void LnkdLst::insertBefore(int value, int input)
     }
 }
 
-int LnkdLst::getHead()
+int LnkdLst::getHead() const
 {
     return head->data;
 }
 
-int LnkdLst::getTail()
+int LnkdLst::getTail() const
 {
     Node * nodePtr;
     nodePtr = head;
