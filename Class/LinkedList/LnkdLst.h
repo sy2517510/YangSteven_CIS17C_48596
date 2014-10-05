@@ -12,11 +12,12 @@
 
 using namespace std;
 
+template<class T>
 class LnkdLst {
 public:
     LnkdLst(int);
     LnkdLst(const LnkdLst&);
-    LnkdLst& operator= (const LnkdLst&);
+    LnkdLst<T>& operator= (const LnkdLst<T>&);
     void prepend(int);
     void append(int);
     void extract(int);
@@ -28,7 +29,7 @@ public:
     virtual ~LnkdLst();
 private:
     struct Node{
-         int data;
+         T data;
          Node *next;
     };
     Node *head;
@@ -37,7 +38,7 @@ private:
 
 int main()
 {
-    LnkdLst list(0);
+    LnkdLst<int> list(0);
     
     list.append(3);
     list.append(5);
@@ -57,7 +58,8 @@ int main()
     return 0;
 }
 
-LnkdLst::LnkdLst(int num)
+template<class T>
+LnkdLst<T>::LnkdLst(int num)
 {
     Node * newNode = new Node;
     newNode->data = num;
@@ -66,17 +68,20 @@ LnkdLst::LnkdLst(int num)
     head = newNode;
 }
 
-LnkdLst::LnkdLst(const LnkdLst& other)
+template<class T>
+LnkdLst<T>::LnkdLst(const LnkdLst& other)
 {
 
 }
 
-LnkdLst& LnkdLst::operator= (const LnkdLst& other)
+template<class T>
+LnkdLst<T>& LnkdLst<T>::operator= (const LnkdLst<T>& other)
 {
     
 }
 
-void LnkdLst::append(int num)
+template<class T>
+void LnkdLst<T>::append(int num)
 {
     Node * newNode;
     Node * nodePtr;
@@ -84,7 +89,7 @@ void LnkdLst::append(int num)
     newNode = new Node;
     newNode->data = num;
     newNode->next = NULL;
-	
+    
 	if(!head)
 	{
 		head = newNode;
@@ -98,7 +103,8 @@ void LnkdLst::append(int num)
 	}
 }
 
-void LnkdLst::prepend(int num)
+template<class T>
+void LnkdLst<T>::prepend(int num)
 {
     Node *newNode;
     Node *nodePtr;
@@ -118,7 +124,8 @@ void LnkdLst::prepend(int num)
     }
 }
 
-void LnkdLst::extract(int num)
+template<class T>
+void LnkdLst<T>::extract(int num)
 {
     Node *nodePtr;
     Node *tracker;
@@ -153,7 +160,8 @@ void LnkdLst::extract(int num)
     }
 }
 
-void LnkdLst::insertAfter(int value, int input)
+template<class T>
+void LnkdLst<T>::insertAfter(int value, int input)
 {
     Node * nodePtr;
     Node * newNode;
@@ -202,7 +210,8 @@ void LnkdLst::insertAfter(int value, int input)
     }
 }
 
-void LnkdLst::insertBefore(int value, int input)
+template<class T>
+void LnkdLst<T>::insertBefore(int value, int input)
 {
     Node * nodePtr;
     Node * newNode;
@@ -248,12 +257,14 @@ void LnkdLst::insertBefore(int value, int input)
     }
 }
 
-int LnkdLst::getHead() const
+template<class T>
+int LnkdLst<T>::getHead() const
 {
     return head->data;
 }
 
-int LnkdLst::getTail() const
+template<class T>
+int LnkdLst<T>::getTail() const
 {
     Node * nodePtr;
     nodePtr = head;
@@ -271,7 +282,8 @@ int LnkdLst::getTail() const
     }
 }
 
-string LnkdLst::toString()
+template<class T>
+string LnkdLst<T>::toString()
 {
   string display = " ";
   if(head){
@@ -284,7 +296,8 @@ string LnkdLst::toString()
   return display;
 }
 
-LnkdLst::~LnkdLst()
+template<class T>
+LnkdLst<T>::~LnkdLst()
 {
     if(head){
         do{
