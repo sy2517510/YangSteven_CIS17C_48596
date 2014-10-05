@@ -1,7 +1,7 @@
 /*
  * File:   LnkdLst.h
  * Author: Steven Yang
- * Created on October 3 2014, 6:00 PM
+ * Created on October 4 2014, 6:00 PM
  */
 
 #ifndef LNKDLST_H
@@ -15,16 +15,16 @@ using namespace std;
 template<class T>
 class LnkdLst {
 public:
-    LnkdLst(int);
-    LnkdLst(const LnkdLst&);
+    LnkdLst(T);
+    LnkdLst(const LnkdLst<T>&);
     LnkdLst<T>& operator= (const LnkdLst<T>&);
-    void prepend(int);
-    void append(int);
-    void extract(int);
-    void insertAfter(int, int);
-    void insertBefore(int, int);
-    int getHead() const;
-    int getTail() const;
+    void prepend(T);
+    void append(T);
+    void extract(T);
+    void insertAfter(T, T);
+    void insertBefore(T, T);
+    T getHead() const;
+    T getTail() const;
     string toString();
     virtual ~LnkdLst();
 private:
@@ -38,7 +38,7 @@ private:
 
 int main()
 {
-    LnkdLst<int> list(0);
+    LnkdLst<float> list(0);
     
     list.append(3);
     list.append(5);
@@ -59,7 +59,7 @@ int main()
 }
 
 template<class T>
-LnkdLst<T>::LnkdLst(int num)
+LnkdLst<T>::LnkdLst(T num)
 {
     Node * newNode = new Node;
     newNode->data = num;
@@ -69,7 +69,7 @@ LnkdLst<T>::LnkdLst(int num)
 }
 
 template<class T>
-LnkdLst<T>::LnkdLst(const LnkdLst& other)
+LnkdLst<T>::LnkdLst(const LnkdLst<T>& other)
 {
 
 }
@@ -81,7 +81,7 @@ LnkdLst<T>& LnkdLst<T>::operator= (const LnkdLst<T>& other)
 }
 
 template<class T>
-void LnkdLst<T>::append(int num)
+void LnkdLst<T>::append(T num)
 {
     Node * newNode;
     Node * nodePtr;
@@ -104,7 +104,7 @@ void LnkdLst<T>::append(int num)
 }
 
 template<class T>
-void LnkdLst<T>::prepend(int num)
+void LnkdLst<T>::prepend(T num)
 {
     Node *newNode;
     Node *nodePtr;
@@ -125,7 +125,7 @@ void LnkdLst<T>::prepend(int num)
 }
 
 template<class T>
-void LnkdLst<T>::extract(int num)
+void LnkdLst<T>::extract(T num)
 {
     Node *nodePtr;
     Node *tracker;
@@ -161,7 +161,7 @@ void LnkdLst<T>::extract(int num)
 }
 
 template<class T>
-void LnkdLst<T>::insertAfter(int value, int input)
+void LnkdLst<T>::insertAfter(T value, T input)
 {
     Node * nodePtr;
     Node * newNode;
@@ -211,7 +211,7 @@ void LnkdLst<T>::insertAfter(int value, int input)
 }
 
 template<class T>
-void LnkdLst<T>::insertBefore(int value, int input)
+void LnkdLst<T>::insertBefore(T value, T input)
 {
     Node * nodePtr;
     Node * newNode;
@@ -258,13 +258,13 @@ void LnkdLst<T>::insertBefore(int value, int input)
 }
 
 template<class T>
-int LnkdLst<T>::getHead() const
+T LnkdLst<T>::getHead() const
 {
     return head->data;
 }
 
 template<class T>
-int LnkdLst<T>::getTail() const
+T LnkdLst<T>::getTail() const
 {
     Node * nodePtr;
     nodePtr = head;
