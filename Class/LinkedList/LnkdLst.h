@@ -38,22 +38,42 @@ private:
 
 int main()
 {
-    LnkdLst<float> list(0);
+    LnkdLst<float> list1(0);
+    LnkdLst<float> list2(2);
     
-    list.append(3);
-    list.append(5);
-    list.prepend(2);
-    list.prepend(7);
-    list.extract(5);
-    list.extract(2);
-    list.insertAfter(3,9); 
-    list.insertAfter(0,1);
-    list.insertBefore(7, 3);
-    list.insertBefore(1,8);
+    list2.append(4);
+    list2.append(8);
+    list2.append(10);
     
-    cout << "The first value is: " << list.getHead() << endl;
-    cout << "The last value is: " << list.getTail() << endl;
-    cout << list.toString();
+    list1.append(3);
+    list1.append(5);
+    list1.prepend(2);
+    list1.prepend(7);
+    list1.extract(5);
+    list1.extract(2);
+    list1.insertAfter(3,9); 
+    list1.insertAfter(0,1);
+    list1.insertBefore(7, 3);
+    list1.insertBefore(1,8);
+    
+    cout << "This is list [1]" << endl;
+    cout << "================" << endl;
+    cout << "The first value is: " << list1.getHead() << endl;
+    cout << "The last value is: " << list1.getTail() << endl;
+    cout << list1.toString() << endl;
+    
+    cout << "This is list [2]" << endl;
+    cout << "================" << endl;
+    cout << "The first value is: " << list2.getHead() << endl;
+    cout << "The last value is: " << list2.getTail() << endl;
+    cout << list2.toString() << endl;
+    
+    cout << "Setting list[1] = list[2]" << endl;
+    list1 = list2;
+    cout << "================" << endl;
+    cout << "The first value is: " << list1.getHead() << endl;
+    cout << "The last value is: " << list1.getTail() << endl;
+    cout << list1.toString() << endl;
     
     return 0;
 }
@@ -77,7 +97,42 @@ LnkdLst<T>::LnkdLst(const LnkdLst<T>& other)
 template<class T>
 LnkdLst<T>& LnkdLst<T>::operator= (const LnkdLst<T>& other)
 {
+    Node * origPtr;
+    Node * otherPtr;
+    Node * newNode;
     
+    origPtr = this->head;
+    otherPtr = other.head;
+    
+    if(origPtr == NULL || otherPtr == NULL)
+    {
+        return *this;    
+    }
+    
+    do
+    {
+        this->worker = this->head;
+        this->head = this->head->next;
+        delete this->worker;
+    }while(this->head);
+    
+    newNode = new Node;
+    newNode->data = otherPtr->data;
+    newNode->next = NULL;
+    this->head = newNode;
+    origPtr = this->head;
+    
+    while(otherPtr->next != NULL)
+    {
+        otherPtr = otherPtr->next;
+        newNode = new Node;
+        newNode->data = otherPtr->data;
+        newNode->next = NULL;
+        origPtr->next = newNode;
+        origPtr = origPtr->next;
+    }
+    
+    return *this;
 }
 
 template<class T>
@@ -90,7 +145,7 @@ void LnkdLst<T>::append(T num)
     newNode->data = num;
     newNode->next = NULL;
     
-	if(!head)
+    if(!head)
 	{
 		head = newNode;
 	}
