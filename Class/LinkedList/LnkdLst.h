@@ -39,7 +39,7 @@ private:
 int main()
 {
     LnkdLst<float> list1(0);
-    LnkdLst<float> list2(2);
+    LnkdLst<float> list2(list1);
     
     list2.append(4);
     list2.append(8);
@@ -55,6 +55,8 @@ int main()
     list1.insertAfter(0,1);
     list1.insertBefore(7, 3);
     list1.insertBefore(1,8);
+    
+    LnkdLst<float> list3(list1);   
     
     cout << "This is list [1]" << endl;
     cout << "================" << endl;
@@ -75,6 +77,12 @@ int main()
     cout << "The last value is: " << list1.getTail() << endl;
     cout << list1.toString() << endl;
     
+    cout << "This is list [3]" << endl;
+    cout << "================" << endl;
+    cout << "The first value is: " << list3.getHead() << endl;
+    cout << "The last value is: " << list3.getTail() << endl;
+    cout << list3.toString() << endl;
+     
     return 0;
 }
 
@@ -91,7 +99,33 @@ LnkdLst<T>::LnkdLst(T num)
 template<class T>
 LnkdLst<T>::LnkdLst(const LnkdLst<T>& other)
 {
-
+    Node *nodePtr;
+    Node * newNode;
+    Node * otherPtr;
+    
+    otherPtr = other.head;
+    
+    newNode = new Node;
+    newNode->data = 0;
+    newNode->next = NULL;
+    if(other.head == NULL)
+    {
+        this->head = newNode;
+    }else
+    {
+        newNode->data = otherPtr->data;
+        this->head = newNode;
+        nodePtr = this->head;
+        while(otherPtr->next != NULL)
+        {
+            otherPtr = otherPtr->next;
+            newNode = new Node;
+            newNode->data = otherPtr->data;
+            newNode->next = NULL;
+            nodePtr->next = newNode;
+            nodePtr = nodePtr->next;
+        }
+    }
 }
 
 template<class T>
