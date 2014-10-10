@@ -1,7 +1,7 @@
 /*
  * File:   LnkdLst.h
  * Author: Steven Yang
- * Created on October 4 2014, 6:00 PM
+ * Created on October 9 2014, 6:00 PM
  */
 
 #ifndef LNKDLST_H
@@ -27,13 +27,43 @@ public:
     T getTail() const;
     string toString();
     virtual ~LnkdLst();
-private:
+protected:
     struct Node{
          T data;
          Node *next;
     };
     Node *head;
     Node *worker;
+};
+
+template<class T>
+class Stack : public LnkdLst<T> {
+    
+};
+
+template<class T>
+class Queue : public LnkdLst<T> {
+    
+};
+
+template<class T>
+class DoublyLL : public LnkdLst<T> {
+   
+};
+
+template<class T>
+class CircularLL : public LnkdLst<T> {
+    
+};
+
+template<class T>
+class PriorityLL : public LnkdLst<T> {
+    
+};
+
+template<class T>
+class SortedLL : public LnkdLst<T> {
+    
 };
 
 int main()
@@ -180,7 +210,7 @@ void LnkdLst<T>::append(T num)
     newNode->next = NULL;
     
     if(!head)
-	{
+    {
 		head = newNode;
 	}
 	else{
