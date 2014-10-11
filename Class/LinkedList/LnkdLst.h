@@ -37,8 +37,17 @@ protected:
 };
 
 template<class T>
-class Stack : public LnkdLst<T> {
-    
+class Stack {
+public:
+    Stack();
+    bool isEmpty();
+    bool isFull();
+    void push(T);
+    void pop();
+    T top();
+
+private:
+    int MAX_ITEMS;
 };
 
 template<class T>
@@ -211,7 +220,7 @@ void LnkdLst<T>::append(T num)
     
     if(!head)
     {
-		head = newNode;
+    	head = newNode;
 	}
 	else{
 		nodePtr = head;
@@ -425,6 +434,42 @@ LnkdLst<T>::~LnkdLst()
             delete worker;
         }while(head);
     }
+}
+
+template<class T>
+Stack<T>::Stack()
+{
+    MAX_ITEMS = 0;
+}
+
+template<class T>
+bool Stack<T>::isEmpty()
+{
+    return true;
+}
+
+template<class T>
+bool Stack<T>::isFull()
+{
+    return false;
+}
+
+template<class T>
+void Stack<T>::push(T newNode)
+{
+    
+}
+
+template<class T>
+void Stack<T>::pop()
+{
+    
+}
+
+template<class T>
+T Stack<T>::top()
+{
+    
 }
 
 #endif	/* LNKDLST_H */
