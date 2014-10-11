@@ -51,8 +51,17 @@ private:
 };
 
 template<class T>
-class Queue : public LnkdLst<T> {
+class Queue {
+public:
+    Queue();
+    void makeEmpty();
+    bool isEmpty();
+    bool isFull();
+    void enqueue(T);
+    void dequeue(T&);
     
+private:
+    int MAX_ITEMS;
 };
 
 template<class T>
@@ -468,6 +477,42 @@ void Stack<T>::pop()
 
 template<class T>
 T Stack<T>::top()
+{
+    
+}
+
+template<class T>
+Queue<T>::Queue()
+{
+    MAX_ITEMS = 0;
+}
+
+template<class T>
+void Queue<T>::makeEmpty()
+{
+    
+}
+
+template<class T>
+bool Queue<T>::isEmpty()
+{
+    return true;
+}
+
+template<class T>
+bool Queue<T>::isFull()
+{
+    return false;
+}
+
+template<class T>
+void Queue<T>::enqueue(T newNode)
+{
+    
+}
+
+template<class T>
+void Queue<T>::dequeue(T& node)
 {
     
 }
