@@ -12,6 +12,8 @@
 
 using namespace std;
 
+struct Node;
+
 template<class T>
 class LnkdLst {
 public:
@@ -27,7 +29,7 @@ public:
     T getTail() const;
     string toString();
     virtual ~LnkdLst();
-protected:
+private:
     struct Node{
          T data;
          Node *next;
@@ -65,8 +67,19 @@ private:
 };
 
 template<class T>
-class DoublyLL : public LnkdLst<T> {
-   
+class DoublyLL :  LnkdLst<T> {
+public:
+    DoublyLL(T);
+    DoublyLL(const DoublyLL<T>&);
+    DoublyLL<T>& operator= (const DoublyLL<T>&);
+    void prepend(T);
+    void append(T);
+    void extract(T);
+    void insertAfter(T, T);
+    void insertBefore(T, T);
+
+private:
+    Node *prev;
 };
 
 template<class T>
@@ -513,6 +526,54 @@ void Queue<T>::enqueue(T newNode)
 
 template<class T>
 void Queue<T>::dequeue(T& node)
+{
+    
+}
+
+template<class T>
+DoublyLL<T>::DoublyLL(T num)
+{
+    
+}
+
+template<class T>
+DoublyLL<T>::DoublyLL(const DoublyLL<T>&)
+{
+    
+}
+
+template<class T>
+DoublyLL<T>& DoublyLL<T>::operator= (const DoublyLL<T>&)
+{
+    
+}
+
+template<class T>
+void DoublyLL<T>::prepend(T num)
+{
+    
+}
+
+template<class T>
+void DoublyLL<T>::append(T num)
+{
+    
+}
+
+template<class T>
+void DoublyLL<T>::extract(T num)
+{
+    
+}
+
+template<class T>
+void DoublyLL<T>::insertBefore(T value, T input)
+{
+    
+}
+
+template<class T>
+void DoublyLL<T>::insertAfter(T value, T input)
 {
     
 }
