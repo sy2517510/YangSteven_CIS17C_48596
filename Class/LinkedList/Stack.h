@@ -69,7 +69,14 @@ void Stack<T>::push(T num)
 template<class T>
 void Stack<T>::pop()
 {
-
+	if (head)
+	{
+		Node * tracker;
+		tracker = head;
+		if(head->next != NULL) head = head->next;
+		else{ head = NULL; }
+		delete tracker;
+	}
 }
 
 template<class T>
