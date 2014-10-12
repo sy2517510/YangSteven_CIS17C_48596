@@ -17,7 +17,7 @@ public:
 	void makeEmpty();
 	bool isEmpty();
 	void enqueue(T);
-	void dequeue(T&);
+	void dequeue();
 	string toString();
 
 private:
@@ -84,9 +84,16 @@ void Queue<T>::enqueue(T num)
 }
 
 template<class T>
-void Queue<T>::dequeue(T& node)
+void Queue<T>::dequeue()
 {
-
+	if (head)
+	{
+		Node * nodePtr;
+		nodePtr = head;
+		head = head->next;
+		delete nodePtr;
+		ITEMS--;
+	}
 }
 
 template<class T>
