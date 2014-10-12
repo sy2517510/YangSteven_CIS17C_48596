@@ -60,9 +60,27 @@ bool Queue<T>::isEmpty()
 }
 
 template<class T>
-void Queue<T>::enqueue(T newNode)
+void Queue<T>::enqueue(T num)
 {
+	Node * newNode;
+	newNode = new Node;
+	newNode->data = num;
+	newNode->next = NULL;
 
+	if (!head)
+	{
+		head = newNode; 
+	}
+	else {
+		Node * nodePtr;
+		nodePtr = head;
+		while (nodePtr->next != NULL)
+		{
+			nodePtr = nodePtr->next;
+		}
+		nodePtr->next = newNode;
+		ITEMS++;
+	}
 }
 
 template<class T>
