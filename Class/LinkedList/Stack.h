@@ -7,6 +7,8 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include <string>
+
 template<class T>
 class Stack {
 public:
@@ -16,6 +18,7 @@ public:
 	void push(T);
 	void pop();
 	T top();
+	string toString();
 
 private:
 	struct Node{
@@ -73,6 +76,20 @@ template<class T>
 T Stack<T>::top()
 {
 
+}
+
+template<class T>
+string Stack<T>::toString()
+{
+	string display = " ";
+	if (head){
+		worker = head;
+		do{
+			cout << "Data element in the stack ->" << worker->data << endl;
+			worker = worker->next;
+		} while (worker);
+	}
+	return display;
 }
 
 #endif	/* STACK_H */
