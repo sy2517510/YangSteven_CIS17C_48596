@@ -75,7 +75,7 @@ void Stack<T>::pop()
 template<class T>
 T Stack<T>::top()
 {
-
+	if (head) return head->data;
 }
 
 template<class T>
