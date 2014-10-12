@@ -50,7 +50,14 @@ Queue<T>::Queue(T num)
 template<class T>
 void Queue<T>::makeEmpty()
 {
-
+	if (head){
+		do{
+			worker = head;
+			head = head->next;
+			delete worker;
+		} while (head);
+		ITEMS = 0;
+	}
 }
 
 template<class T>
