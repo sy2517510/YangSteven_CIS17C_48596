@@ -53,9 +53,14 @@ bool Stack<T>::isEmpty()
 }
 
 template<class T>
-void Stack<T>::push(T newNode)
+void Stack<T>::push(T num)
 {
+	Node * newNode;
+	newNode = new Node;
+	newNode->data = num;
+	newNode->next = head;
 
+	head = newNode;
 }
 
 template<class T>
