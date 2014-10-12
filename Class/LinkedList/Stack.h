@@ -11,6 +11,7 @@ template<class T>
 class Stack {
 public:
 	Stack();
+	Stack(T);
 	bool isEmpty();
 	void push(T);
 	void pop();
@@ -30,6 +31,18 @@ template<class T>
 Stack<T>::Stack()
 {
 	ITEMS = 0;
+}
+
+template<class T>
+Stack<T>::Stack(T num)
+{
+	ITEMS = 0;
+	Node * newNode;
+	newNode = new Node;
+	newNode->data = num;
+	newNode->next = NULL;
+
+	head = newNode;
 }
 
 template<class T>
