@@ -18,6 +18,7 @@ public:
 	void push(T);
 	void pop();
 	T top();
+	int size();
 	string toString();
 
 private:
@@ -39,7 +40,7 @@ Stack<T>::Stack()
 template<class T>
 Stack<T>::Stack(T num)
 {
-	ITEMS = 0;
+	ITEMS = 1;
 	Node * newNode;
 	newNode = new Node;
 	newNode->data = num;
@@ -64,6 +65,7 @@ void Stack<T>::push(T num)
 	newNode->next = head;
 
 	head = newNode;
+	ITEMS++;
 }
 
 template<class T>
@@ -76,6 +78,7 @@ void Stack<T>::pop()
 		if(head->next != NULL) head = head->next;
 		else{ head = NULL; }
 		delete tracker;
+		ITEMS--;
 	}
 }
 
@@ -83,6 +86,12 @@ template<class T>
 T Stack<T>::top()
 {
 	if (head) return head->data;
+}
+
+template<class T>
+int Stack<T>::size()
+{
+	return ITEMS;
 }
 
 template<class T>
