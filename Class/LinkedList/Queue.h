@@ -4,6 +4,8 @@
 * Created on October 10 2014, 8:00 PM
 */
 
+#include <string>
+
 #ifndef QUEUE_H
 #define QUEUE_H
 
@@ -16,6 +18,7 @@ public:
 	bool isEmpty();
 	void enqueue(T);
 	void dequeue(T&);
+	string toString();
 
 private:
 	struct Node{
@@ -66,6 +69,20 @@ template<class T>
 void Queue<T>::dequeue(T& node)
 {
 
+}
+
+template<class T>
+string Queue<T>::toString()
+{
+	string display = " ";
+	if (head){
+		worker = head;
+		do{
+			cout << "Data element in the queue ->" << worker->data << endl;
+			worker = worker->next;
+		} while (worker);
+	}
+	return display;
 }
 
 #endif	/* QUEUE_H */
