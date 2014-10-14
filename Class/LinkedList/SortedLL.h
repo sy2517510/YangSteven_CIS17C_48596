@@ -15,10 +15,7 @@ public:
 	SortedLL(T);
 	SortedLL(const SortedLL<T>&);
 	SortedLL<T>& operator= (const SortedLL<T>&);
-	void prepend(T);
-	void append(T);
-	void insertAfter(T, T);
-	void insertBefore(T, T);
+	void insert(T num);
 
 };
 template<class T>
@@ -40,27 +37,41 @@ SortedLL<T>& SortedLL<T>::operator= (const SortedLL&)
 }
 
 template<class T>
-void SortedLL<T>::prepend(T num)
+void SortedLL<T>::insert(T num)
 {
+	Node * newNode;
+	newNode = new Node;
+	newNode->data = num;
+	newNode->next = NULL;
 
-}
+	if (head)
+	{
+		Node * nodePtr;
+		nodePtr = head;
 
-template<class T>
-void SortedLL<T>::append(T num)
-{
-
-}
-
-template<class T>
-void SortedLL<T>::insertBefore(T value, T input)
-{
-
-}
-
-template<class T>
-void SortedLL<T>::insertAfter(T value, T input)
-{
-
+		if (nodePtr->data > num)
+		{
+			newNode->next = nodePtr;
+			head = newNode;
+			return;
+		}
+		while (nodePtr->next != NULL)
+		{
+			if (nodePtr->next->data > num)
+			{
+				worker = nodePtr->next;
+				nodePtr->next = newNode;
+				newNode->next = worker;
+				return;
+			}
+			nodePtr = nodePtr->next;
+		} 
+		nodePtr->next = newNode; 
+	}
+	else
+	{
+		head = newNode;
+	}
 }
 
 #endif	/* SORTEDLL_H */
