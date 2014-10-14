@@ -25,7 +25,7 @@ SortedLL<T>::SortedLL(T num) : LnkdLst<T>(num)
 }
 
 template<class T>
-SortedLL<T>::SortedLL(const SortedLL&)
+SortedLL<T>::SortedLL(const SortedLL& other) : LnkdLst<T>(other)
 {
 
 }
