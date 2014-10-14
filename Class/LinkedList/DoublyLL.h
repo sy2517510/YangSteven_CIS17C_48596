@@ -60,7 +60,21 @@ DoublyLL<T>& DoublyLL<T>::operator= (const DoublyLL<T>&)
 template<class T>
 void DoublyLL<T>::prepend(T num)
 {
+	Node * newNode;
+	newNode = new Node;
+	newNode->data = num;
+	newNode->next = NULL;
+	newNode->prev = NULL;
 
+	if (head)
+	{
+		Node *nodePtr;
+		nodePtr = head;
+
+		newNode->next = nodePtr;
+		head = newNode;
+	}
+	else { head = newNode; }
 }
 
 template<class T>
