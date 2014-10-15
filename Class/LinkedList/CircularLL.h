@@ -21,13 +21,17 @@ public:
 	void insertAfter(T, T);
 	void insertBefore(T, T);
 	T getTail() const;
+	int getListCount() const;
+	string toString();
+private:
+	int LIST_COUNT;
 
 };
 
 template<class T>
 CircularLL<T>::CircularLL(T num) : LnkdLst<T>(num)
 {
-
+	LIST_COUNT++;
 }
 
 template<class T>
@@ -45,7 +49,27 @@ CircularLL<T>& CircularLL<T>::operator= (const CircularLL<T>&)
 template<class T>
 void CircularLL<T>::prepend(T num)
 {
+	Node *newNode;
+	Node *nodePtr;
+	Node *headPtr;
 
+	newNode = new Node;
+	newNode->data = num;
+	newNode->next = NULL;
+
+	headPtr = head;
+
+	if (!head)
+	{
+		head = newNode;
+	}
+	else{
+		nodePtr = head;
+		newNode->next = nodePtr;
+		head = newNode;
+		newNode->next = headPtr;
+	}
+	LIST_COUNT++;
 }
 
 template<class T>
@@ -91,5 +115,25 @@ T CircularLL<T>::getTail() const
 {
 
 }
+
+template<class T>
+int CircularLL<T>::getListCount() const
+{
+	return LIST_COUNT;
+}
+
+template<class T>
+string CircularLL<T>::toString()
+{
+	string display = " ";
+	worker = head;
+	for (int i = 0; i < LIST_COUNT; i++)
+	{
+		cout << "Data element in the list ->" << worker->data << endl;
+		worker = worker->next;
+	}
+	return display;
+}
+
 
 #endif	/* CIRCULARLL_H */
