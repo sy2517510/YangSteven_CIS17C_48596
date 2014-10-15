@@ -109,6 +109,51 @@ void DoublyLL<T>::append(T num)
 template<class T>
 void DoublyLL<T>::extract(T num)
 {
+	Node * nodePtr;
+	Node * tracker;
+	bool found = false;
+
+	nodePtr = NULL;
+	tracker = NULL;
+
+	if (!head)
+	{
+		return;
+	}
+	if (head->data == num)
+	{
+		worker = head;
+		if (head->next != NULL)
+		{
+			head = head->next;
+			delete worker;
+			return;
+		}
+		delete worker;
+		head = NULL;
+	}
+	else
+	{ 
+		nodePtr = head;
+			while (nodePtr->data != num)
+			{
+				nodePtr = nodePtr->next;
+				if (nodePtr->data == num) found = true;
+				if (nodePtr->next == NULL) break;
+			}
+			if (found)
+			{
+				tracker = nodePtr;
+				nodePtr = nodePtr->prev;
+				if (tracker->next != NULL)
+				{
+					worker = tracker->next;
+					nodePtr->next = worker;
+				}
+				else { nodePtr->next = NULL; }
+				delete tracker;
+			} 
+	}
 
 }
 
