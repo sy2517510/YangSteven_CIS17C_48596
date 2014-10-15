@@ -80,7 +80,30 @@ void DoublyLL<T>::prepend(T num)
 template<class T>
 void DoublyLL<T>::append(T num)
 {
+	Node * nodePtr;
 
+	Node * newNode;
+	newNode = new Node;
+	newNode->data = num;
+	newNode->next = NULL;
+	newNode->prev = NULL;
+
+	if (!head)
+	{
+		nodePtr = head;
+		newNode->prev = nodePtr;
+		nodePtr->next = newNode;
+	}
+	else
+	{
+		nodePtr = head;
+		while (nodePtr->next != NULL)
+		{
+			nodePtr = nodePtr->next;
+		}
+		nodePtr->next = newNode;
+		newNode->prev = nodePtr;
+	}
 }
 
 template<class T>
