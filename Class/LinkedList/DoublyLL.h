@@ -213,7 +213,59 @@ void DoublyLL<T>::insertBefore(T value, T input)
 template<class T>
 void DoublyLL<T>::insertAfter(T value, T input)
 {
+	Node * nodePtr;
+	Node * tracker;
+	Node * newNode;
+	bool found = false;
 
+	newNode = new Node;
+	newNode->data = input;
+	newNode->next = NULL;
+	newNode->prev = NULL;
+
+	nodePtr = NULL;
+	tracker = NULL;
+
+	if (!head)
+	{
+		head = newNode;
+		return;
+	}
+	nodePtr = head;
+	if (nodePtr->data == value)
+	{
+		worker = nodePtr->next;
+		nodePtr->next = newNode;
+		newNode->next = worker;
+		newNode->prev = nodePtr;
+		return;
+	}
+	while (nodePtr->next != NULL)
+	{
+		nodePtr = nodePtr->next;
+		if (nodePtr->data == value)
+		{
+			tracker = nodePtr;
+			found = true;
+			break;
+		}
+		if (nodePtr->next == NULL) break;
+	}
+	if (found)
+	{
+		if (tracker->next != NULL)
+		{
+			nodePtr = tracker->next;
+			tracker->next = newNode;
+			newNode->next = nodePtr;
+			newNode->prev = tracker;
+		}
+		else 
+		{ 
+			tracker->next = newNode;
+			newNode->prev = tracker;
+		}
+	}
 }
 
 template<class T>
