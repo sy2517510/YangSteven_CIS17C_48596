@@ -54,23 +54,56 @@ void PriorityLL<T>::prependP(T num)
 	newNode->data = num;
 	newNode->next = NULL;
 
+	if (!priority)
+	{
+		priority = newNode;
+	}
+	else
+	{
+		priority->next = newNode;
+	}
+
 	if (!head)
 	{
 		head = newNode;
-		priority = newNode;
 	}
 	else{
 		nodePtr = head;
 		newNode->next = nodePtr;
 		head = newNode;
-		priority = newNode;
 	}
 }
 
 template<class T>
 void PriorityLL<T>::appendP(T num)
 {
+	Node * newNode;
+	Node * nodePtr;
 
+	newNode = new Node;
+	newNode->data = num;
+	newNode->next = NULL;
+	
+	if (!priority)
+	{
+		priority = newNode;
+	}
+	else
+	{
+		priority->next = newNode;
+	}
+
+	if (!head)
+	{
+		head = newNode;
+	}
+	else{
+		nodePtr = head;
+		while (nodePtr->next){
+			nodePtr = nodePtr->next;
+		}
+		nodePtr->next = newNode;
+	}
 }
 
 template<class T>
