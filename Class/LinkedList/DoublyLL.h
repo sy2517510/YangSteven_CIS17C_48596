@@ -46,9 +46,38 @@ DoublyLL<T>::DoublyLL(T num)
 }
 
 template<class T>
-DoublyLL<T>::DoublyLL(const DoublyLL<T>&)
+DoublyLL<T>::DoublyLL(const DoublyLL<T>& other)
 {
+	Node *nodePtr;
+	Node * newNode;
+	Node * otherPtr;
 
+	otherPtr = other.head;
+
+	newNode = new Node;
+	newNode->data = 0;
+	newNode->next = NULL;
+	newNode->prev = NULL;
+	if (other.head == NULL)
+	{
+		this->head = newNode;
+	}
+	else
+	{
+		newNode->data = otherPtr->data;
+		this->head = newNode;
+		nodePtr = this->head;
+		while (otherPtr->next != NULL)
+		{
+			otherPtr = otherPtr->next;
+			newNode = new Node;
+			newNode->data = otherPtr->data;
+			newNode->next = NULL;
+			nodePtr->next = newNode;
+			newNode->prev = nodePtr;
+			nodePtr = nodePtr->next;
+		}
+	}
 }
 
 template<class T>
