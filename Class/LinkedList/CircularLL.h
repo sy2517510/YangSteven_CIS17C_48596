@@ -75,20 +75,30 @@ void CircularLL<T>::prepend(T num)
 template<class T>
 void CircularLL<T>::append(T num)
 {
+	Node * headPtr;
 	Node * newNode;
 	newNode = new Node;
 	newNode->data = num;
-	newNode->next = head;
+	newNode->next = NULL;
+
+	headPtr = head;
+
+	if (!head)
+	{
+		head = newNode;
+	}
 
 	if (head)
 	{
 		Node * nodePtr;
 		nodePtr = head;
-		while (nodePtr->next != head)
+		for (int i = 1; i < LIST_COUNT; i++)
 		{
 			nodePtr = nodePtr->next;
 		}
 		nodePtr->next = newNode;
+		newNode->next = headPtr;
+		LIST_COUNT++;
 	}
 }
 
