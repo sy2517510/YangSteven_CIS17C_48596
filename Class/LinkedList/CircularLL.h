@@ -105,7 +105,43 @@ void CircularLL<T>::append(T num)
 template<class T>
 void CircularLL<T>::extract(T num)
 {
+	Node *nodePtr;
+	Node *tracker;
+	Node *prev;
+	Node *headPtr;
 
+	prev = NULL;
+	headPtr = head;
+
+	if (!head)
+	{
+		return;
+	}
+	else{
+		if (head->data == num && head->next == headPtr)
+		{
+			head = NULL;
+			LIST_COUNT--;
+		}
+		else {
+			bool found = false;
+			nodePtr = head;
+			while (nodePtr->data != num && nodePtr->next != headPtr)
+			{
+				prev = nodePtr;
+				nodePtr = nodePtr->next;
+				if (nodePtr->data == num){ found = true; }
+			}
+			if (found)
+			{
+				tracker = nodePtr;
+				nodePtr = tracker->next;
+				prev->next = nodePtr;
+				delete tracker;
+				LIST_COUNT--;
+			}
+		}
+	}
 }
 
 template<class T>
