@@ -27,7 +27,7 @@ public:
 template<class T>
 CircularLL<T>::CircularLL(T num) : LnkdLst<T>(num)
 {
-	
+
 }
 
 template<class T>
@@ -51,7 +51,21 @@ void CircularLL<T>::prepend(T num)
 template<class T>
 void CircularLL<T>::append(T num)
 {
+	Node * newNode;
+	newNode = new Node;
+	newNode->data = num;
+	newNode->next = head;
 
+	if (head)
+	{
+		Node * nodePtr;
+		nodePtr = head;
+		while (nodePtr->next != head)
+		{
+			nodePtr = nodePtr->next;
+		}
+		nodePtr->next = newNode;
+	}
 }
 
 template<class T>
