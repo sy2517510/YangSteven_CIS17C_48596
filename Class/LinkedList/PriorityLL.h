@@ -24,9 +24,9 @@ public:
 
 };
 template<class T>
-PriorityLL<T>::PriorityLL(T num)
+PriorityLL<T>::PriorityLL(T num) : LnkdLst<T>(num)
 {
-
+	;
 }
 
 template<class T>
