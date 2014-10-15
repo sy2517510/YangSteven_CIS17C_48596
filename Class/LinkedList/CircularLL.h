@@ -172,6 +172,7 @@ void CircularLL<T>::insertBefore(T value, T input)
 			if (tracker->next == headPtr)
 			{
 				tracker->next = newNode;
+				newNode->next = headPtr;
 			}
 			else{
 				newNode->next = tracker;
@@ -203,7 +204,61 @@ void CircularLL<T>::insertBefore(T value, T input)
 template<class T>
 void CircularLL<T>::insertAfter(T value, T input)
 {
+	Node * nodePtr;
+	Node * newNode;
+	Node * tracker;
+	Node * headPtr;
 
+	newNode = new Node;
+	newNode->data = input;
+	newNode->next = NULL;
+
+	headPtr = head;
+
+	if (!head)
+	{
+		return;
+	}
+	else
+	{
+		if (head->data == value)
+		{
+			tracker = head;
+			if (tracker->next == headPtr)
+			{
+				tracker->next = newNode;
+			}
+			else{
+				nodePtr = tracker->next;
+				newNode->next = nodePtr;
+				tracker->next = newNode;
+				newNode->next = headPtr;
+			}
+			LIST_COUNT++;
+		}
+		else
+		{
+			nodePtr = head;
+			bool found = false;
+			while (nodePtr->data != value && nodePtr->next != headPtr)
+			{
+				nodePtr = nodePtr->next;
+				if (nodePtr->data == value) found = true;
+			}
+			if (found)
+			{
+				tracker = nodePtr;
+				if (nodePtr->next != headPtr)
+				{
+					nodePtr = nodePtr->next;
+					tracker->next = newNode;
+					newNode->next = nodePtr;
+				}
+				else{ tracker->next = newNode; }
+				LIST_COUNT++;
+			}
+		}
+	}
 }
 
 template<class T>
