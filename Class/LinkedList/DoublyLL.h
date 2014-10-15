@@ -72,6 +72,7 @@ void DoublyLL<T>::prepend(T num)
 		nodePtr = head;
 
 		newNode->next = nodePtr;
+		nodePtr->prev = newNode;
 		head = newNode;
 	}
 	else { head = newNode; }
@@ -160,7 +161,53 @@ void DoublyLL<T>::extract(T num)
 template<class T>
 void DoublyLL<T>::insertBefore(T value, T input)
 {
+	Node * nodePtr;
+	Node * tracker;
+	Node * newNode;
+	bool found = false;
 
+	newNode = new Node;
+	newNode->data = input;
+	newNode->next = NULL;
+	newNode->prev = NULL;
+
+	nodePtr = NULL;
+	tracker = NULL;
+
+	if (!head)
+	{
+		head = newNode;
+		return;
+	}
+	nodePtr = head;
+	if (nodePtr->data == value)
+	{
+		newNode->next = nodePtr;
+		nodePtr->prev = newNode;
+		head = newNode;
+		return;
+	}
+	while (nodePtr->next != NULL)
+	{
+		nodePtr = nodePtr->next;
+		if (nodePtr->data == value)
+		{
+			tracker = nodePtr;
+			found = true;
+			break;
+		}
+		if (nodePtr->next == NULL) break;
+	}
+	if (found)
+	{
+		newNode->next = tracker;
+		if (nodePtr->prev != NULL)
+		{
+			nodePtr = nodePtr->prev;
+			nodePtr->next = newNode;
+			newNode->prev = nodePtr;
+		}
+	}
 }
 
 template<class T>
