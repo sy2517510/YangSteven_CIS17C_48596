@@ -147,7 +147,57 @@ void CircularLL<T>::extract(T num)
 template<class T>
 void CircularLL<T>::insertBefore(T value, T input)
 {
+	Node * nodePtr;
+	Node * newNode;
+	Node * prev;
+	Node * tracker;
+	Node * headPtr;
 
+	newNode = new Node;
+	newNode->data = input;
+	newNode->next = NULL;
+
+	prev = NULL;
+	headPtr = head;
+
+	if (!head)
+	{
+		return;
+	}
+	else
+	{
+		if (head->data == value)
+		{
+			tracker = head;
+			if (tracker->next == headPtr)
+			{
+				tracker->next = newNode;
+			}
+			else{
+				newNode->next = tracker;
+				head = newNode;
+			}
+			LIST_COUNT++;
+		}
+		else
+		{
+			nodePtr = head;
+			bool found = false;
+			while (nodePtr->data != value && nodePtr->next != headPtr)
+			{
+				prev = nodePtr;
+				nodePtr = nodePtr->next;
+				if (nodePtr->data == value) found = true;
+			}
+			if (found)
+			{
+				tracker = nodePtr;
+				prev->next = newNode;
+				newNode->next = tracker;
+				LIST_COUNT++;
+			}
+		}
+	}
 }
 
 template<class T>
