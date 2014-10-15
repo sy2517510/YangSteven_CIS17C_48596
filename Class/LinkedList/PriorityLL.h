@@ -53,15 +53,15 @@ void PriorityLL<T>::prependP(T num)
 	newNode = new Node;
 	newNode->data = num;
 	newNode->next = NULL;
-
+	
 	if (!priority)
 	{
 		priority = newNode;
 	}
 	else
 	{
-		priority->next = newNode;
-	}
+		newNode->next = priority;
+	} 
 
 	if (!head)
 	{
@@ -109,7 +109,40 @@ void PriorityLL<T>::appendP(T num)
 template<class T>
 void PriorityLL<T>::extract(T num)
 {
+	Node *nodePtr;
+	Node *tracker;
+	Node *prev;
 
+	prev = NULL;
+
+	if (!head)
+	{
+		return;
+	}
+	else{
+		if (head->data == num && head->next == NULL)
+		{
+			head = NULL;
+
+		}
+		else {
+			bool found = false;
+			nodePtr = head;
+			while (nodePtr->data != num && nodePtr->next != NULL)
+			{
+				prev = nodePtr;
+				nodePtr = nodePtr->next;
+				if (nodePtr->data == num){ found = true; }
+			}
+			if (found)
+			{
+				tracker = nodePtr;
+				nodePtr = tracker->next;
+				prev->next = nodePtr;
+				delete tracker;
+			}
+		}
+	}
 }
 
 template<class T>
