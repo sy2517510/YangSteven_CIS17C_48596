@@ -264,7 +264,15 @@ void CircularLL<T>::insertAfter(T value, T input)
 template<class T>
 T CircularLL<T>::getTail() const
 {
+	Node * nodePtr;
 
+	nodePtr = head;
+
+	for (int i = 1; i < LIST_COUNT; i++)
+	{
+		nodePtr = nodePtr->next;
+	}
+	return nodePtr->data;
 }
 
 template<class T>
