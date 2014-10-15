@@ -22,6 +22,9 @@ public:
 	void insertAfterP(T, T);
 	void insertBeforeP(T, T);
 
+private:
+	Node * priority;
+
 };
 template<class T>
 PriorityLL<T>::PriorityLL(T num) : LnkdLst<T>(num)
@@ -44,7 +47,24 @@ PriorityLL<T>& PriorityLL<T>::operator= (const PriorityLL<T>&)
 template<class T>
 void PriorityLL<T>::prependP(T num)
 {
+	Node *newNode;
+	Node *nodePtr;
 
+	newNode = new Node;
+	newNode->data = num;
+	newNode->next = NULL;
+
+	if (!head)
+	{
+		head = newNode;
+		priority = newNode;
+	}
+	else{
+		nodePtr = head;
+		newNode->next = nodePtr;
+		head = newNode;
+		priority = newNode;
+	}
 }
 
 template<class T>
