@@ -64,8 +64,8 @@ int main()
 	stack.push(4);
 	stack.push(8);
 	stack.toString();
-	cout << stack.top() << endl;
-	cout << stack.size() << endl;
+	cout << "Stack top: " << stack.top() << endl;
+	cout << "Stack size: " << stack.size() << endl;
 	stack.pop();
 	stack.pop();
 	stack.toString(); 
