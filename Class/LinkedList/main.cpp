@@ -68,8 +68,9 @@ int main()
 	cout << "Stack size: " << stack.size() << endl;
 	stack.pop();
 	stack.pop();
+        cout << "Pop twice" << endl;
 	stack.toString(); 
-	cout << stack.size() << endl; 
+	cout << "Final Stack size: " << stack.size() << endl; 
 
 	//Queue
 	cout << "Queue" << endl;
