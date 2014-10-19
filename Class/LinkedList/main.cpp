@@ -123,6 +123,7 @@ int main()
 	circList.toString();
 	cout << "This is the tail: " << circList.getTail() << endl;
 
+        cout << "Circular List 2" << endl;
 	CircularLL<float> circList2(circList);
 	circList2.toString();
 
