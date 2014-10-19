@@ -79,8 +79,10 @@ int main()
 	queue.enqueue(7);
 	queue.enqueue(0);
 	queue.toString();
+        cout << "Make Queue empty" << endl;
 	queue.makeEmpty();
 	queue.enqueue(2);
+        cout << "Final Queue Contents" << endl;
 	queue.toString(); 
 
 	//Doubly LL
