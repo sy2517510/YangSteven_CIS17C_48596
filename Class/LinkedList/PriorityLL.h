@@ -15,15 +15,15 @@ public:
 	PriorityLL(T);
 	PriorityLL(const PriorityLL<T>&);
 	PriorityLL<T>& operator= (const PriorityLL<T>&);
-	void prependP(T);
-	void appendP(T);
-	void extract(T);
-	void pullHighestP();
-	void insertAfterP(T, T);
-	void insertBeforeP(T, T);
+	//void prependP(T);
+	//void appendP(T);
+	//void extract(T);
+	//void pullHighestP();
+	//void insertAfterP(T, T);
+	//void insertBeforeP(T, T);
 
-private:
-	Node * priority;
+//private:
+	//Node * priority;
 
 };
 template<class T>
@@ -43,7 +43,7 @@ PriorityLL<T>& PriorityLL<T>::operator= (const PriorityLL<T>&)
 {
 
 }
-
+/*
 template<class T>
 void PriorityLL<T>::prependP(T num)
 {
@@ -161,6 +161,6 @@ template<class T>
 void PriorityLL<T>::insertAfterP(T value, T input)
 {
 
-}
+} */
 
 #endif	/* PRIORITYLL_H */
