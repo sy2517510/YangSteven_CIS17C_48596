@@ -138,7 +138,7 @@ int main()
 	sorted.insert(9);
 	sorted.toString();
 
-	cout << "Second List" << endl;
+	cout << "Sorted List 2" << endl;
 	SortedLL<float> sorted2(sorted);
 	sorted2.insert(3);
 	sorted2.toString();
