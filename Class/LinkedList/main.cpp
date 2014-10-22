@@ -103,10 +103,12 @@ int main()
 
 	DoublyLL<float> doubly2(doubly);
 	cout << "List 2" << endl;
+	cout << "=============" << endl;
 	doubly2.toString();
 
 	DoublyLL<float> doubly3(4);
 	cout << "List 3" << endl;
+	cout << "=============" << endl;
 	doubly3 = doubly2;
 	doubly3.toString(); 
 
@@ -124,6 +126,7 @@ int main()
 	cout << "This is the tail: " << circList.getTail() << endl;
 
         cout << "Circular List 2" << endl;
+        cout << "=============" << endl;
 	CircularLL<float> circList2(circList);
 	circList2.toString();
 
@@ -139,6 +142,7 @@ int main()
 	sorted.toString();
 
 	cout << "Sorted List 2" << endl;
+	cout << "=============" << endl;
 	SortedLL<float> sorted2(sorted);
 	sorted2.insert(3);
 	sorted2.toString();
